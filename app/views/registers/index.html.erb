@@ -1,0 +1,24 @@
+<div>
+  <h2>Hashtags</h2>
+  <%= render "registers/form" %>
+</div>
+<div style="margin-top: 50px">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Hashtag</th>
+        <th>Count</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @registers.each do |register| %>
+        <tr>
+          <td><%= register.value %></td>
+          <td><%= register.count %></td>
+          <td><%= link_to "Show", register_path(register) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

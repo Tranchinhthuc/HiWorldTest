@@ -1,0 +1,22 @@
+<div style="margin-top: 50px">
+  <h2>Recent comments</h2>
+  <span><%= paginate @recent_comments %></span>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Comment</th>
+        <th>Commented date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recent_comments.each do |comment| %>
+        <tr>
+          <td><%= comment.user.username %></td>
+          <td class="comment-content"><%= comment.content %></td>
+          <td><%= comment.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
