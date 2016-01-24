@@ -2,7 +2,7 @@ class RegistersController < ApplicationController
   before_action :authenticate_user!
   def show
     @register = Register.find params[:id]
-    @instagrammers = eval(@register.fetch_data)[:instagrammers]
+    @instagrammers = eval(@register.fetch_data)[:instagrammers].first 10
     @recent_comments = Kaminari.paginate_array(eval(@register.fetch_data)[:recent_comments])
       .page(params[:page]).per 10
   end
