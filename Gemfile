@@ -13,6 +13,8 @@ gem "bootstrap-sass",       "3.2.0.0"
 gem "kaminari"
 gem "ransack"
 gem 'devise'
+gem 'omniauth-instagram'
+gem 'omniauth'
 group :development, :test do
   gem 'byebug'
 end

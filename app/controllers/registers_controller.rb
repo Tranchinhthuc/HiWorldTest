@@ -1,4 +1,5 @@
 class RegistersController < ApplicationController
+  before_action :authenticate_user!
   def show
     @register = Register.find params[:id]
     @instagrammers = @register.instagrammers
