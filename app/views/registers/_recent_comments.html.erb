@@ -12,9 +12,9 @@
     <tbody>
       <% @recent_comments.each do |comment| %>
         <tr>
-          <td><%= comment.user.username %></td>
-          <td class="comment-content"><%= comment.content %></td>
-          <td><%= comment.created_at %></td>
+          <td><%= instagrammer(comment[:user_id]) %></td>
+          <td class="comment-content"><%= comment[:content] %></td>
+          <td><%= comment[:created_at] %></td>
         </tr>
       <% end %>
     </tbody>

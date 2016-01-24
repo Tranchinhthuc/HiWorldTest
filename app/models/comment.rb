@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   has_many :hashtags
 
-  after_commit :save_hashtags
+  # after_commit :save_hashtags
 
   def find_hashtags
     content.split(" ").select{|word| word[0]=="#" && word[1]!="#"}

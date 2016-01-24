@@ -2,21 +2,14 @@ class RegistersController < ApplicationController
   before_action :authenticate_user!
   def show
     @register = Register.find params[:id]
-    @instagrammers = @register.instagrammers
-    @recent_comments = Kaminari.paginate_array(@register.recent_comments).page(params[:page]).per 10
+    @instagrammers = eval(@register.fetch_data)[:instagrammers]
+    @recent_comments = Kaminari.paginate_array(eval(@register.fetch_data)[:recent_comments])
+      .page(params[:page]).per 10
   end
 
   def index
-    # artists = Artist.ransack(name_cont: 'foo', style_cont: 'bar', m: 'or')
     @register = Register.new
     @registers = Register.all
-    @search = Hashtag.ransack params[:q]
-    @hashtags = if params[:q]
-      params[:q][:value_cont].present? ? (Kaminari.paginate_array(@search.result).page params[:page]) : []
-    else
-      @hashtags = []
-    end
-    @comments = @hashtags.map(&:comment)
   end
 
   def create

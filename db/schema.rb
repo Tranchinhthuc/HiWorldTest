@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160124074144) do
 
   create_table "registers", force: :cascade do |t|
     t.string   "value"
+    t.string   "fetch_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

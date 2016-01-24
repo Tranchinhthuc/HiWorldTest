@@ -15,6 +15,8 @@ gem "ransack"
 gem 'devise'
 gem 'omniauth-instagram'
 gem 'omniauth'
+gem 'sidekiq'
+gem 'instagram'
 group :development, :test do
   gem 'byebug'
 end

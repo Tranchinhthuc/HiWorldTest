@@ -1,17 +1,14 @@
 class Register < ActiveRecord::Base
-  validates :value, presence: true, length: {minimum: 3}
-
-  def count
-    Comment.ransack(content_cont: value).result.count
-  end
+  validates :value, presence: true, length: {minimum: 2}
+  after_create :update_fetch_data
 
   def recent_comments
-    Comment.ransack(content_cont: value).result.order(created_at: :desc)
+    Comment.ransack(content_cont: value).result
   end
 
   def instagrammers
     instagrammers_hash = {}
-    users = Comment.ransack(content_cont: value).result.map(&:user)
+    users = recent_comments.map(&:user)
     users.each do |user|
       instagrammers_hash[user.username] = user.comments
                                         .map(&:hashtags)
@@ -19,5 +16,10 @@ class Register < ActiveRecord::Base
                                         .count
     end
     instagrammers_hash.sort_by {|_key, value| value}.reverse.to_h
+  end
+
+  private
+  def update_fetch_data
+    FetchCommentsWorker.perform_async self.id
   end
 end
