@@ -6,13 +6,13 @@ namespace :db do
     Rake::Task["db:migrate:reset"].invoke
 
     puts "Creats users"
-    10.times{|i|
-      User.create username: "username#{i}", avatar: "images/images.jpeg"
+    10000.times{|i|
+      User.create username: "username#{i}", email: "thuc#{i}@gmail.com", password: "12341234"
     }
 
     puts "Create sample hashtag values"
     HASHTAGS_ARRAY = []
-    30.times {|i|
+    30000.times {|i|
       HASHTAGS_ARRAY<< "##{Faker::Lorem.word}"
     }
 

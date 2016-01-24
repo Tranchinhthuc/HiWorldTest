@@ -15,8 +15,8 @@
       <% @registers.each do |register| %>
         <tr>
           <td><%= register.value %></td>
-          <td><%= register.count %></td>
-          <td><%= link_to "Show", register_path(register) %></td>
+          <td><%= register.fetch_data? ? eval(register.fetch_data)[:amount] : "fetching..." %></td>
+          <td><%= link_to_if(register.fetch_data?, "Show", register_path(register)) %></td>
         </tr>
       <% end %>
     </tbody>

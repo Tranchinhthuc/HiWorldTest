@@ -8,11 +8,11 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to current_user.username, root_path %></li>
         <li><%= image_tag(current_user.profile_image, size: "40x40") %></li>
-        <li><%#= link_to current_user.profile_image, root_path %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       </ul>
       <% else %>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%= link_to "Signout", new_user_session_path %></li>
         </ul>
       <% end %>
     </div><!-- /.navbar-collapse -->
